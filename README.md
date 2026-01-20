@@ -63,6 +63,25 @@ horizon-creative-works/
 
 Create a `.env.local` file in the root directory for local environment variables (see `.env.example` for template).
 
+## Deployment
+
+### Production Environment
+
+[![Deployed on Vercel](https://vercel.com/button)](https://horizon-creative-works-ngr48498j-entouns-projects.vercel.app/)
+
+**Production URL:** https://horizon-creative-works-ngr48498j-entouns-projects.vercel.app/
+
+### Deployment Workflow
+
+- **Automatic Deployment:** All commits pushed to the `main` branch are automatically deployed to production
+- **Preview Deployments:** Pull requests generate preview URLs automatically with a unique URL for each PR
+- **Build Process:** Vercel automatically runs `npm run build` and deploys to their global Edge Network
+- **HTTPS:** SSL certificates are automatically provisioned and managed by Vercel (Let's Encrypt)
+
+### Deployment Status
+
+Check deployment status and build logs in the [Vercel Dashboard](https://vercel.com/dashboard).
+
 ## Development
 
 This project follows strict TypeScript configuration and uses Tailwind CSS for styling. Components are built using shadcn/ui for accessibility and consistency.
