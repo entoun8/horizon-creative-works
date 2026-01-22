@@ -3,10 +3,17 @@ import sanitizeHtml from 'sanitize-html';
 import { ContactFormData } from './schemas';
 import { serverConfig, validateServerConfig } from './config';
 
-// Validate environment variables at module load
-validateServerConfig();
+// Lazy initialization - only create Resend instance when needed (at runtime, not build time)
+let resend: Resend | null = null;
 
-const resend = new Resend(serverConfig.resend.apiKey);
+function getResendClient(): Resend {
+  if (!resend) {
+    // Validate environment variables only when first needed (runtime, not build time)
+    validateServerConfig();
+    resend = new Resend(serverConfig.resend.apiKey);
+  }
+  return resend;
+}
 
 /**
  * Escapes HTML entities to prevent XSS attacks in email templates
@@ -68,7 +75,7 @@ export async function sendContactEmail(data: ContactFormData): Promise<void> {
       </html>
     `;
 
-    const result = await resend.emails.send({
+    const result = await getResendClient().emails.send({
       from: 'Website Contact Form <noreply@yourdomain.com>',
       to: serverConfig.contact.email,
       subject: `New Contact Form Submission from ${escapedName}`,
