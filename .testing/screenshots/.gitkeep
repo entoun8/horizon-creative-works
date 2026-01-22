@@ -1,0 +1,12 @@
+# Screenshots Folder
+
+This folder will contain screenshots captured during cross-browser and device testing for:
+- Visual regression baseline
+- Issue documentation
+- Layout verification across different browsers/devices
+- Evidence of successful testing
+
+Screenshots should be named descriptively:
+- `[browser]-[viewport]-[page]-[description].png`
+- Example: `chrome-1440px-home-hero-section.png`
+- Example: `ios-safari-375px-contact-form-error.png`
